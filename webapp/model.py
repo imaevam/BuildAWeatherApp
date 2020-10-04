@@ -26,8 +26,12 @@ class User(db.Model, UserMixin): #множественное наследова�
     def check_password(self, password):
         return check_password_hash(self.password, password) #true \ false
 
+    @property
+    def is_admin(self):
+        return self.role == 'admin'
+
     def __repr__(self):
-        return 'User {}'.format(self.username)
+        return 'User name={} id={}'.format(self.username, self.id)
 
     
 

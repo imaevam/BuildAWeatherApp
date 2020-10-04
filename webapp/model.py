@@ -15,7 +15,7 @@ class News(db.Model): # атрибуты, поля в таблице
         return '<News {} {}>'.format(self.title, self.url)
 
 class User(db.Model, UserMixin): #множественное наследование; def is_authenticated и тд
-    user_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), index=True, unique=True) # ограничение по длине; те, колонки по которым в дальнейшем будем фильтровать запросы имеет смысл делать индексами, т.к. поиск по индексу быстрее
     password = db.Column(db.String(128))
     role = db.Column(db.String(10), index=True)

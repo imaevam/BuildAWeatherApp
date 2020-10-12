@@ -2,7 +2,8 @@ from getpass import getpass #input для ввода пароля в засек�
 import sys # работа с системными функциями, вызовами
 
 from webapp import create_app
-from webapp.model import db, User
+from webapp.db import db
+from webapp.news.models import User
 
 app = create_app()
 

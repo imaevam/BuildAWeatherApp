@@ -1,6 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from webapp.db import db
 
 class News(db.Model): # атрибуты, поля в таблице
     id = db.Column(db.Integer, primary_key=True) # целое число, первичный ключ, бд будет его индексировать

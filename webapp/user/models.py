@@ -8,6 +8,7 @@ class User(db.Model, UserMixin): #множественное наследова�
     username = db.Column(db.String(50), index=True, unique=True) # ограничение по длине; те, колонки по которым в дальнейшем будем фильтровать запросы имеет смысл делать индексами, т.к. поиск по индексу быстрее
     password = db.Column(db.String(128))
     role = db.Column(db.String(10), index=True)
+    email = db.Column(db.String(50))
 
     def set_password(self, password):
         self.password = generate_password_hash(password)

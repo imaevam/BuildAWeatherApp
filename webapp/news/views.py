@@ -1,6 +1,6 @@
 from webapp.news.models import News
 from webapp.weather import weather_by_city
-from flask import Blueprint, render_template, current_app
+from flask import abort, Blueprint, render_template, current_app
 
 
 blueprint = Blueprint('news', __name__)
@@ -11,4 +11,14 @@ def index():
     weather = weather_by_city(current_app.config['WEATHER_DEFAULT_CITY'])
     news_list = News.query.order_by(News.published.desc()).all() # верни нам все новости из БД 
     return render_template('news/index.html', page_title=title, weather=weather, news_list=news_list)
+
+
+@blueprint.route('/news/<int:news_id>')  # проверка по id
+def single_news(news_id):
+    my_news = News.query.filter(News.id == news_id).first()
+    if not my_news:
+        abort(404)
+
+    return render_template('news/single_news.html', page_title=my_news.title, news=my_news)
+        
     

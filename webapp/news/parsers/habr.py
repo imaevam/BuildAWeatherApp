@@ -28,7 +28,7 @@ def parse_habr_date(date_str):
 
 
 def get_habr_snippets():
-    html = get_html("https://habr.com/ru/search/?target_type=posts&q=python&order_by=relevance")
+    html = get_html("https://habr.com/ru/search/?target_type=posts&q=python&order_by=date")
     if html:
         soup = BeautifulSoup(html, 'html.parser')
         all_news = soup.find('ul', class_='content-list_posts').findAll('li', class_='content-list__item_post')

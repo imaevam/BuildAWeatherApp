@@ -9,7 +9,7 @@ blueprint = Blueprint('news', __name__)
 def index():
     title = "Новости Python"
     weather = weather_by_city(current_app.config['WEATHER_DEFAULT_CITY'])
-    news_list = News.query.order_by(News.published.desc()).all() # верни нам все новости из БД 
+    news_list = News.query.filter(News.text.isnot(None)).order_by(News.published.desc()).all() # верни нам все новости из БД 
     return render_template('news/index.html', page_title=title, weather=weather, news_list=news_list)
 
 
